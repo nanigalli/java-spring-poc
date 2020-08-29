@@ -3,7 +3,6 @@ package com.galli.poc.controller;
 import com.galli.poc.exception.NotFoundException;
 import com.galli.poc.model.User;
 import com.galli.poc.repository.UserRepository;
-import com.sun.javafx.binding.StringFormatter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
