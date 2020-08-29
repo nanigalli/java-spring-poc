@@ -1,4 +1,4 @@
-package com.galli.poc.models;
+package com.galli.poc.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
