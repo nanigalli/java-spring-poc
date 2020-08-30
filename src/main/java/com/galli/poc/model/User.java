@@ -62,7 +62,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isEnabled() {
+    public boolean getEnabled() {
         return enabled;
     }
 
