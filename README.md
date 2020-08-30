@@ -2,6 +2,7 @@
 Pruebas de conceptos de tecnologias y framework de Java
 
 ## API
+
 ### Documentacion de los endpoints disponibles
 Levantar la app y acceder a:
 
@@ -16,3 +17,9 @@ src/main/resources/data.sql
 Levantar la App y acceder a:
 
 http://localhost:8080/h2-console
+
+## Algunas cosas aplicadas...
+
+* Clean Architecture:
+https://github.com/mattia-battiston/clean-architecture-example
+* MapStruct: para la conversion de objetos del negocio a DTOs

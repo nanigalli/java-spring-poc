@@ -2,6 +2,7 @@ package com.galli.poc.controller;
 
 import com.galli.poc.model.ErrorResponse;
 import com.galli.poc.model.User;
+import com.galli.poc.model.UserDto;
 import com.galli.poc.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class UserControllerTest {
         user.setId(id);
         when(repository.findById(id)).thenReturn(Optional.of(user));
 
-        ResponseEntity<User> response = template.getForEntity(getUrl("/" + id), User.class);
+        ResponseEntity<UserDto> response = template.getForEntity(getUrl("/" + id), UserDto.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());

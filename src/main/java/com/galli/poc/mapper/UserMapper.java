@@ -14,7 +14,6 @@ public interface UserMapper {
     @Mapping(expression = "java(user.getLastName() + \", \" + user.getFirstName())", target = "name")
     UserDto userToUserDto(User user);
 
-
     @Mapping(target = "firstName", expression = "java(userDto.getName().split(\", \")[1])")
     @Mapping(target = "lastName", expression = "java(userDto.getName().split(\", \")[0])")
     User userDtoToUser(UserDto userDto);
