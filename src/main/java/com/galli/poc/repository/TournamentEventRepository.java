@@ -1,6 +1,7 @@
 package com.galli.poc.repository;
 
 import com.galli.poc.model.TournamentEvent;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -54,6 +55,7 @@ import java.util.*;
  * ]
  *
  */
+@Service
 public class TournamentEventRepository {
 
     public static final String URL_GET_TOURNAMENT_EVENT = "https://run.mocky.io/v3/85ad46f6-2de9-4dad-9197-73783acf4159";

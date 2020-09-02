@@ -38,6 +38,14 @@ public class TournamentEvent {
 
     }
 
+    public TournamentEvent(UUID id, String game, int enrolled, Date date, Location location) {
+        this.id = id;
+        this.game = game;
+        this.enrolled = enrolled;
+        this.date = date;
+        this.location = location;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -83,7 +91,7 @@ public class TournamentEvent {
         this.location = location;
     }
 
-    public class Location {
+    public static class Location {
 
         String address;
 
@@ -98,6 +106,14 @@ public class TournamentEvent {
         double longitude;
 
         public Location() {
+        }
+
+        public Location(String address, String locality, String province, double latitude, double longitude) {
+            this.address = address;
+            this.locality = locality;
+            this.province = province;
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
 
         public String getAddress() {
