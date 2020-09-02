@@ -66,7 +66,7 @@ public class TournamentEventRepository {
         this.restTemplate = new RestTemplate();
     }
 
-    public List<TournamentEvent> getAlls() {
+    public List<TournamentEvent> getAll() {
         return Optional.ofNullable(restTemplate.getForEntity(URL_GET_TOURNAMENT_EVENT,TournamentEvent[].class).getBody())
                 .map(Arrays::asList).orElseGet(ArrayList::new);
     }

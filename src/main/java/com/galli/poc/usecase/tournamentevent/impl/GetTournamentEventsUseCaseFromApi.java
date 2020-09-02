@@ -2,7 +2,6 @@ package com.galli.poc.usecase.tournamentevent.impl;
 
 import com.galli.poc.model.TournamentEvent;
 import com.galli.poc.repository.TournamentEventRepository;
-import com.galli.poc.repository.UserRepository;
 import com.galli.poc.usecase.tournamentevent.GetTournamentEventsUseCase;
 import org.springframework.stereotype.Service;
 
