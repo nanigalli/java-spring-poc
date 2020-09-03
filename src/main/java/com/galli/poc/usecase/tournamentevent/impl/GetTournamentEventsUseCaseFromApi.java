@@ -1,5 +1,6 @@
 package com.galli.poc.usecase.tournamentevent.impl;
 
+import com.galli.poc.exception.RepositoryException;
 import com.galli.poc.model.TournamentEvent;
 import com.galli.poc.repository.TournamentEventRepository;
 import com.galli.poc.usecase.tournamentevent.GetTournamentEventsUseCase;
@@ -18,6 +19,10 @@ public class GetTournamentEventsUseCaseFromApi implements GetTournamentEventsUse
 
     @Override
     public List<TournamentEvent> getTournamentEvents() {
-        return repository.getAll();
+        try {
+            return repository.getAll();
+        } catch (Exception e) {
+            throw new RepositoryException("Hubo un problema al buscar los eventos de torneo", e);
+        }
     }
 }

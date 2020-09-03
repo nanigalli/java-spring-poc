@@ -1,5 +1,6 @@
 package com.galli.poc.usecase.tournamentevent.impl;
 
+import com.galli.poc.exception.RepositoryException;
 import com.galli.poc.model.TournamentEvent;
 import com.galli.poc.repository.TournamentEventRepository;
 import org.junit.jupiter.api.Test;
@@ -27,12 +28,12 @@ public class GetTournamentEventsUseCaseFromApiTest {
         public void testGetTournamentEventsWithProblemRepository() {
             when(repository.getAll()).thenThrow(new RuntimeException("Error"));
 
-            assertThrows(RuntimeException.class, () -> useCase.getTournamentEvents());
+            assertThrows(RepositoryException.class, () -> useCase.getTournamentEvents());
         }
 
         @Test
         public void testGetTournamentEventsEmpty() {
-            when(repository.getAll()).thenReturn(new ArrayList<>());
+            when(repository.getAll()).thenReturn(Collections.emptyList());
 
             List<TournamentEvent> tournamentEvents = useCase.getTournamentEvents();
 

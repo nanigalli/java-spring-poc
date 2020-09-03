@@ -21,7 +21,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { Exception.class})
     protected ResponseEntity<ErrorResponse> handleFatalError(Exception ex) {
-        return new ResponseEntity<>(new ErrorResponse(ErrorResponse.ErrorCode.FATAL_ERROR, FATAL_ERROR_MESSAGE), new HttpHeaders(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorResponse(ErrorResponse.ErrorCode.FATAL_ERROR, FATAL_ERROR_MESSAGE), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

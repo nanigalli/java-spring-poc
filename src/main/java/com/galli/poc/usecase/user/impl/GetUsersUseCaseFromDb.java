@@ -1,5 +1,6 @@
 package com.galli.poc.usecase.user.impl;
 
+import com.galli.poc.exception.RepositoryException;
 import com.galli.poc.model.User;
 import com.galli.poc.repository.UserRepository;
 import com.galli.poc.usecase.user.GetUsersUseCase;
@@ -18,6 +19,10 @@ public class GetUsersUseCaseFromDb implements GetUsersUseCase {
 
     @Override
     public List<User> getAllEnabledUsers() {
-        return repository.findAllEnabled();
+        try {
+            return repository.findAllEnabled();
+        } catch (Exception e) {
+            throw new RepositoryException("Hubo un problema al buscar los usuarios habilitados", e);
+        }
     }
 }

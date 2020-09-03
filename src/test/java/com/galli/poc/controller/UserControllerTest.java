@@ -1,5 +1,6 @@
 package com.galli.poc.controller;
 
+import com.galli.poc.exception.RepositoryException;
 import com.galli.poc.model.ErrorResponse;
 import com.galli.poc.model.User;
 import com.galli.poc.model.UserDto;
@@ -15,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -49,12 +49,22 @@ public class UserControllerTest {
 
     @Test
     public void testGetAllEnabledEmpty() throws MalformedURLException {
-        when(repository.findAllEnabled()).thenReturn(new ArrayList());
+        when(repository.findAllEnabled()).thenReturn(Collections.emptyList());
 
         ResponseEntity<List> response = template.getForEntity(getUrl(""), List.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody().isEmpty());
+    }
+
+    @Test
+    public void testGetAllEnabledException() throws MalformedURLException {
+        when(repository.findAllEnabled()).thenThrow(new RepositoryException("Upss..", new RuntimeException()));
+
+        ResponseEntity<ErrorResponse> response = template.getForEntity(getUrl(""), ErrorResponse.class);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(ErrorResponse.ErrorCode.FATAL_ERROR, response.getBody().getCode());
     }
 
     @Test
@@ -82,6 +92,18 @@ public class UserControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(id, response.getBody().getId());
+    }
+
+    @Test
+    public void testGetByIdException() throws MalformedURLException {
+        int id = 1;
+
+        when(repository.findById(id)).thenThrow(new RepositoryException("Upss..", new RuntimeException()));
+
+        ResponseEntity<ErrorResponse> response = template.getForEntity(getUrl("/" + id), ErrorResponse.class);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(ErrorResponse.ErrorCode.FATAL_ERROR, response.getBody().getCode());
     }
 
     private String getUrl(String endpoint) throws MalformedURLException {

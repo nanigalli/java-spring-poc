@@ -1,5 +1,6 @@
 package com.galli.poc.usecase.user.impl;
 
+import com.galli.poc.exception.RepositoryException;
 import com.galli.poc.model.User;
 import com.galli.poc.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class GetUsersUseCaseFromDbTest {
     public void testGetAllEnabledUsersWithProblemRepository() {
         when(repository.findAllEnabled()).thenThrow(new RuntimeException("Error"));
 
-        assertThrows(RuntimeException.class, () -> useCase.getAllEnabledUsers());
+        assertThrows(RepositoryException.class, () -> useCase.getAllEnabledUsers());
     }
 
     @Test

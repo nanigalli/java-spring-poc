@@ -1,5 +1,6 @@
 package com.galli.poc.usecase.user.impl;
 
+import com.galli.poc.exception.RepositoryException;
 import com.galli.poc.model.User;
 import com.galli.poc.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class GetUserUseCaseFromDbTest {
         int id = 1;
         when(repository.findById(id)).thenThrow(new RuntimeException("Error"));
 
-        assertThrows(RuntimeException.class, () -> useCase.getUserById(id));
+        assertThrows(RepositoryException.class, () -> useCase.getUserById(id));
     }
 
     @Test
